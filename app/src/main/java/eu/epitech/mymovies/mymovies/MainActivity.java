@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private CallbackManager callbackManager;
     private AccessToken token;
     private String UserName;
-    private int UserId;
+    private String UserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,26 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("CONNECTED");
                 token = loginResult.getAccessToken();
                 String UserToken = loginResult.getAccessToken().getToken(); //JE PENSE PAS QU'ON VA AVOIR BESOIN DE CA MAIS JE LE LAISSE POUR L'INSTANT
-                GraphRequest request = GraphRequest.newMeRequest(
-                        token,
-                        new GraphRequest.GraphJSONObjectCallback() {
-                            @Override
-                            public void onCompleted(JSONObject object, GraphResponse response) {
-                                JSONObject Response = response.getJSONObject();
-                                try {
-                                    UserName = Response.getString("name");
-                                    UserId = Response.getInt("id");
-                                    System.out.println(UserName);
-                                    System.out.println(UserId);
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        });
-                Bundle parameters = new Bundle();
-                parameters.putString("fields", "id,name");
-                request.setParameters(parameters);
-                request.executeAsync();
+                ConnectToFacebook();
             }
             @Override
             public void onCancel() {
@@ -71,6 +52,35 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+    protected void ConnectToFacebook(){
+        GraphRequest request = GraphRequest.newMeRequest(
+                token,
+                new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(JSONObject object, GraphResponse response) {
+                        JSONObject Response = response.getJSONObject();
+                        try {
+                            UserName = Response.getString("name");
+                            UserId = Response.getString("id");
+                            System.out.println(UserName);
+                            System.out.println(UserId);
+
+                            //pour rediriger vers la home activity quand on est bien connecté
+                            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                            intent.putExtra("USERNAME", UserName);
+                            intent.putExtra("USERID", UserId);
+                            startActivity(intent);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+        Bundle parameters = new Bundle();
+        parameters.putString("fields", "id,name");
+        request.setParameters(parameters);
+        request.executeAsync();
     }
 }
 
