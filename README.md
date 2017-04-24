@@ -1,2 +1,2 @@
 # mymovies
-mymovies app for android
+Android epitech 5th year project
