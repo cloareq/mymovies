@@ -1,0 +1,31 @@
+version: "3"
+services:
+  percona:
+    image: percona:5.7
+    container_name: mymovies-percona
+    environment:
+      MYSQL_ROOT_PASSWORD: mymovies
+      MYSQL_DATABASE: mymovies
+      MYSQL_USER: mymovies
+      MYSQL_PASSWORD: mymovies
+    ports:
+      - "3306:3306"
+    volumes:
+      - mymovies_percona_db:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: mymovies-pma
+    environment:
+     - PMA_ARBITRARY=1
+     - PMA_USER=root
+     - PMA_PASSWORD=mymovies
+    links:
+      - percona:db
+    ports:
+     - 8080:80
+    volumes:
+     - /sessions
+
+volumes:
+  mymovies_percona_db:

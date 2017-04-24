@@ -1,0 +1,16 @@
+{
+	"env": {
+		"node": true
+	},
+	"globals": {
+		"logger": true
+	},
+	"extends": "eslint-config-lludol",
+	"rules": {
+		"comma-dangle": ["error", {
+			"arrays": "always-multiline",
+			"objects": "always-multiline",
+			"functions": "ignore"
+		}]
+	}
+}

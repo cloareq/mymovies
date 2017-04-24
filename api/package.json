@@ -1,0 +1,34 @@
+{
+  "name": "mymovies-api",
+  "version": "0.0.1",
+  "description": "The API of the MyMovies Android app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start-docker": "docker-compose up",
+    "stop-docker": "docker-compose stop"
+  },
+  "author": "Ludovic Lerus <lludol03@gmail.com> (https://ludovic.ninja)",
+  "license": "MIT",
+  "dependencies": {
+    "bookshelf": "^0.10.3",
+    "boom": "^4.3.1",
+    "camelcase-keys": "^4.1.0",
+    "glue": "^4.1.0",
+    "hapi": "^16.1.1",
+    "hapi-cors-headers": "^1.0.0",
+    "hapi-good-winston": "^1.1.1",
+    "joi": "^10.4.1",
+    "jsonwebtoken": "^7.3.0",
+    "knex": "^0.12.9",
+    "moviedb": "^0.2.8",
+    "mysql": "^2.13.0",
+    "themoviedb-javascript-library": "^1.0.0",
+    "winston-lludol": "^0.0.5"
+  },
+  "devDependencies": {
+    "apidoc": "^0.17.5",
+    "eslint": "^3.19.0",
+    "eslint-config-lludol": "^0.1.6"
+  }
+}

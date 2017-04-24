@@ -1,0 +1,13 @@
+{
+	"connections": [
+		{
+			"port": 3000,
+			"host": "127.0.0.1",
+			"labels": ["api"]
+		}
+	],
+	"registrations": [
+		{ "plugin": "./src/routes/users/index", "options": { "select": "api" } },
+		{ "plugin": "./src/routes/movies/index", "options": { "select": "api" } }
+	]
+}
