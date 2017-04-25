@@ -15,7 +15,8 @@ const routes = [
 				},
 			},
 		},
-	},	{
+	},
+	{
 		method:  'PUT',
 		path:    '/movies/{idMovie}',
 		handler: handler.updateMovie,
