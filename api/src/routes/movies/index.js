@@ -4,6 +4,18 @@ const handler = require('./handler');
 const routes = [
 	{
 		method:  'POST',
+		path:    '/search',
+		handler: handler.searchMovie,
+		config:  {
+			validate: {
+				params: {
+					q: Joi.string().min(1),
+				},
+			},
+		},
+	},
+	{
+		method:  'POST',
 		path:    '/movies',
 		handler: handler.addMovie,
 		config:  {

@@ -4,6 +4,15 @@ const UsersMovies = require('./../models/usersMovies');
 
 /* eslint-disable valid-jsdoc */
 
+exports.searchMovie = async function (request, reply) {
+	try {
+		reply({});
+	} catch (error) {
+		logger.error(error);
+		reply(Boom.badImplementation());
+	}
+};
+
 exports.addMovie = async function (request, reply) {
 	try {
 		reply({});
