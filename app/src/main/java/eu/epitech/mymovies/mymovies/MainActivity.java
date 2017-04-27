@@ -8,6 +8,8 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+
+import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
@@ -26,16 +28,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        callbackManager = CallbackManager.Factory.create();
         setContentView(R.layout.activity_main);
-        loginButton = (LoginButton)findViewById(R.id.login_button);
 
+        loginButton = (LoginButton)findViewById(R.id.login_button);
+        callbackManager = CallbackManager.Factory.create();
+        if (AccessToken.getCurrentAccessToken()!=null) {
+            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+            intent.putExtra("USERNAME", "null");
+            intent.putExtra("USERID", "0");
+            startActivity(intent);
+        }
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 System.out.println("CONNECTED");
                 token = loginResult.getAccessToken();
-                String UserToken = loginResult.getAccessToken().getToken(); //JE PENSE PAS QU'ON VA AVOIR BESOIN DE CA MAIS JE LE LAISSE POUR L'INSTANT
+                String UserToken = loginResult.getAccessToken().getToken();
                 ConnectToFacebook();
             }
             @Override
