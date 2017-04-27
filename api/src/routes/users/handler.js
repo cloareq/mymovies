@@ -9,8 +9,8 @@ const UsersMovies = require('./../models/usersMovies');
  * @apiName createUser
  * @apiGroup User
  *
- * @apiParam {idfb} idfb Id of the user in facebook.
- * @apiParam {name} name Name of the user.
+ * @apiParam {String} idfb Id of the user in facebook.
+ * @apiParam {String} name Name of the user.
  *
  * @apiSuccess (200)
  *
