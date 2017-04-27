@@ -1,0 +1,22 @@
+'POST' '/users'
+{idfb:idfb, name:"name ..."}
+
+'POST' '/movies/search',
+{idfb: id.., search: "search"}
+
+'POST' '/movies/{idfb}/{idMovie}',
+{comment: "mon commentaire", "mark": 3}
+tu peux mettre seulement mark ou comment il en faut juste une des 2 minimum
+
+'GET' '/movies/{idfb}/{idMovie}',
+get movie
+
+'GET' '/movies/{idfb}',
+get all movies rated or comment by user idfb
+
+
+'GET' '/users'
+get all user (pas utile je pense)
+
+'GET' '/users/{idUser}'
+get user idUser (pas utile je pense)

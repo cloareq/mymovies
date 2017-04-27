@@ -48,7 +48,7 @@ exports.createUser = async function (request, reply) {
 exports.getUser = async function (request, reply) {
 	try {
 		const user = await Users.get({
-			idfb: request.params.idUser,
+			fbid: request.params.idUser,
 		});
 
 		if (!user) {
