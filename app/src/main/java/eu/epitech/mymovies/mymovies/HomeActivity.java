@@ -14,6 +14,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.facebook.login.LoginManager;
+
 import eu.epitech.mymovies.mymovies.Controllers.UsersManager;
 import eu.epitech.mymovies.mymovies.Models.Users;
 
@@ -50,6 +52,18 @@ public class HomeActivity extends AppCompatActivity {
                 searchManager.getSearchableInfo(getComponentName()));
 
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) { //ca c'est pour le logout, je sais pas si y'a une meilleur facon de le faire
+        switch (item.getItemId()){
+            case R.id.logout:
+                LoginManager.getInstance().logOut();
+                Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+                startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void putUserInDB()

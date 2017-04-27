@@ -32,12 +32,13 @@ public class MainActivity extends AppCompatActivity {
 
         loginButton = (LoginButton)findViewById(R.id.login_button);
         callbackManager = CallbackManager.Factory.create();
+
         if (AccessToken.getCurrentAccessToken()!=null) {
-            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-            intent.putExtra("USERNAME", "null");
-            intent.putExtra("USERID", "0");
-            startActivity(intent);
+            token = AccessToken.getCurrentAccessToken();
+            ConnectToFacebook();
         }
+
+
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {

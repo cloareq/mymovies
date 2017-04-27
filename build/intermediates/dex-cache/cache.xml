@@ -52,7 +52,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="41ff51b6703338bb29fd2cf9a84ac90be290fe30">
+        sha1="8cf52cd6f55eb8a51d3374a6f6c1608ccc98ef97">
         <dex dex="/Users/cloare_q/mymovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_32a0ce11dd39672e8846a4e7943ae9eb013e78ab/classes.dex" />
     </item>
     <item
@@ -124,7 +124,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="d5b08efa556a54aa47fb9a5677e20e5b9faa2d62">
+        sha1="dc1369429189727a89a79eb37873c929301a1a1a">
         <dex dex="/Users/cloare_q/mymovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_d165352ad9e607c128b009c2e9ef133e4cff476f/classes.dex" />
     </item>
     <item
