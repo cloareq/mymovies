@@ -22,10 +22,27 @@ class Base {
 	}
 
 	/**
+	 * Update an element to the database.
+	 * @param {Object} attrs - Attributes with values of the element.
+	 * @return {Promise} A Promise with the new element inserted.
+	 */
+	update(attrs) {
+		return this._Model.where({id:attrs.id}).fetch().then((res) => {
+				console.log(res);
+				res.attributes = attrs;
+				res.save();
+				return res.attributes;
+		});
+//		return this._toJSON(new this._Model(attrs).save());
+	}
+
+	/**
 	 * Return every element of associated with the Model.
 	 * @return {Promise} A Promise with every element.
 	 */
-	getAll() {
+	getAll(attrs) {
+		if (attrs)
+			return this._toJSON(this._Model.where(attrs).fetchAll());
 		return this._toJSON(this._Model.fetchAll());
 	}
 

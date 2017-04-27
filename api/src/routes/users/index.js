@@ -9,13 +9,16 @@ const routes = [
 		config:  {
 			validate: {
 				payload: {
-					nickname:      Joi.string().min(3),
-					password:      Joi.string().min(6),
-					passwordCheck: Joi.string().min(6),
-					email:         Joi.string().email(),
+					idfb:      Joi.string().min(1),
+					name:      Joi.string().min(1),
 				},
 			},
 		},
+	},
+	{
+		method:  'GET',
+		path:    '/users',
+		handler: handler.getUsers,
 	},
 	{
 		method:  'GET',

@@ -4,42 +4,39 @@ const handler = require('./handler');
 const routes = [
 	{
 		method:  'POST',
-		path:    '/search',
+		path:    '/movies/search',
 		handler: handler.searchMovie,
 		config:  {
 			validate: {
-				params: {
-					q: Joi.string().min(1),
+				payload: {
+					idfb: Joi.string().min(1).required(),
+					search: Joi.string().min(1).required(),
 				},
 			},
 		},
 	},
 	{
 		method:  'POST',
-		path:    '/movies',
-		handler: handler.addMovie,
+		path:    '/movies/{idfb}/{idMovie}',
+		handler: handler.updateMovie,
 		config:  {
 			validate: {
-				params: {
-					idMovie: Joi.number().min(1),
+				payload: {
 					mark:    Joi.number().min(1).max(5),
-					comment: Joi.string(),
+					comment: Joi.string().optional(),
 				},
 			},
 		},
 	},
 	{
-		method:  'PUT',
-		path:    '/movies/{idMovie}',
-		handler: handler.updateMovie,
-		config:  {
-			validate: {
-				params: {
-					mark:    Joi.number().min(1).max(5).optional(),
-					comment: Joi.string().optional(),
-				},
-			},
-		},
+		method:  'GET',
+		path:    '/movies/{idfb}/{idMovie}',
+		handler: handler.getMovie,
+	},
+	{
+		method:  'GET',
+		path:    '/movies/{idfb}',
+		handler: handler.getMovies,
 	},
 ];
 
