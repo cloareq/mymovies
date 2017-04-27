@@ -146,9 +146,11 @@ exports.getMovies = async function(request, reply) {
         let promises = [];
         userMovies.forEach((movie, idx) => {
             promises.push(new Promise((resolve, reject) => {
-                MovieDB.movieInfo({
-                    id: movie.idMovie
-                }, (err, res) => {
+                MovieDB.movieInfo({id: movie.idMovie}, (err, res) => {
+                    if (!res) {
+                        reject(err);
+                        return;
+                    }
                     computeAverageMark(user, res.id, (stat, idx) => {
                         ret.push({
                             id: res.id,
@@ -208,7 +210,6 @@ exports.updateMovie = async function(request, reply) {
         }
 
         let userMovie = await UsersMovies.get({id_user: user.id, id_movie: request.params.idMovie});
-        //		console.log(userMovie);
         if (userMovie) {
             userMovie = UsersMovies.update({
                 id: userMovie.id,
