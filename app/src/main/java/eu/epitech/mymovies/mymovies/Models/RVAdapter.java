@@ -1,5 +1,7 @@
 package eu.epitech.mymovies.mymovies.Models;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,14 +12,19 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import eu.epitech.mymovies.mymovies.HomeActivity;
+import eu.epitech.mymovies.mymovies.MovieActivity;
 import eu.epitech.mymovies.mymovies.R;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MovieViewHolder>{
 
     List<Movies> movies;
 
-    public RVAdapter(List<Movies> movies){
-        this.movies = movies;
+    Context context;
+
+    public RVAdapter(List<Movies> movies, Context context){
+        this.movies=movies;
+        this.context=context;
     }
 
     @Override
@@ -33,10 +40,20 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MovieViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(MovieViewHolder movieViewHolder, int i) {
+    public void onBindViewHolder(final MovieViewHolder movieViewHolder, final int i) {
         movieViewHolder.movieTitle.setText(movies.get(i).title);
         movieViewHolder.movieResume.setText(movies.get(i).overview);
-        movieViewHolder.moviePicture.setImageResource(movies.get(i).photoId);
+        movieViewHolder.moviePicture.setImageBitmap(movies.get(i).photoId);
+
+        movieViewHolder.moviePicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println(movies.get(i).title);
+                Intent intent = new Intent(context, MovieActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override
