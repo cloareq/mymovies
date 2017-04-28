@@ -142,6 +142,7 @@ public class SearchActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             pd=ProgressDialog.show(SearchActivity.this,"","Please Wait",false);
+            pd.show();
         }
 
         @Override
