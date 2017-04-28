@@ -11,21 +11,36 @@ async function computeAverageMark(user, movieId, callback, idx) {
     // Get all mark for the movie ! then compute average
     let averageMark;
     let comments = [];
+    let promises = [];
+    let sumMark = 0;
     if (movie) {
-        let sumMark = 0;
         movie.forEach(m => {
-            sumMark += m.mark;
-            if (m.idUser != user.id) {
-                comments.push(m.comment);
-            }
+            promises.push(new Promise(async function(resolve, reject) {
+                try {
+                    const userComment = await Users.get({id: this.idUser});
+                    sumMark += this.mark;
+                    if (this.idUser != user.id) {
+                        comments.push({
+                            name: userComment.name,
+                            comment: this.comment
+                        });
+                    }
+                    resolve(comments);
+                } catch (error) {
+                    logger.error(error);
+                    reject(error);
+                    reply(Boom.badImplementation());
+                }
+
+            }.bind(m)));
         });
-        averageMark = sumMark / movie.length;
     }
-    callback({
-        averageMark: averageMark,
-        comments: comments
-    }, idx);
-    return {averageMark: averageMark, comments: comments};
+    Promise.all(promises).then(() => {
+        callback({
+            averageMark: movie ? sumMark / movie.length : undefined,
+            comments: comments
+        }, idx);
+    })
 }
 
 function replyMovie(request, res, reply, user) {
@@ -224,6 +239,7 @@ exports.updateMovie = async function(request, reply) {
                 id_movie: request.params.idMovie,
                 mark: request.payload.mark || userMovie.mark,
                 comment: request.payload.comment || userMovie.comment
+//                date: new Date().toString()
             });
         } else {
             userMovie = UsersMovies.create({
@@ -231,6 +247,7 @@ exports.updateMovie = async function(request, reply) {
                 id_movie: request.params.idMovie,
                 mark: request.payload.mark || 0,
                 comment: request.payload.comment || ''
+//                date: new Date().toString()
             });
         }
         reply(userMovie);
