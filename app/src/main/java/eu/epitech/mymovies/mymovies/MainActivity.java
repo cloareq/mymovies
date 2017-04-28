@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         loginButton = (LoginButton)findViewById(R.id.login_button);
         callbackManager = CallbackManager.Factory.create();
 
-        if (AccessToken.getCurrentAccessToken()!=null) {
+        if (AccessToken.getCurrentAccessToken()!=null) { // si il est deja connecte en cache
             token = AccessToken.getCurrentAccessToken();
             ConnectToFacebook();
         }

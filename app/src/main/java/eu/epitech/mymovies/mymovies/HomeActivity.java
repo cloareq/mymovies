@@ -16,8 +16,13 @@ import android.view.MenuItem;
 
 import com.facebook.login.LoginManager;
 
+import org.json.JSONObject;
+
+import java.util.concurrent.ExecutionException;
+
 import eu.epitech.mymovies.mymovies.Controllers.UsersManager;
 import eu.epitech.mymovies.mymovies.Models.Users;
+import eu.epitech.mymovies.mymovies.services.PostAsync;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -32,12 +37,24 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = getIntent();
         UserName = intent.getStringExtra("USERNAME");
         UserId = intent.getStringExtra("USERID");
+        logAllUsersFromDB();
         if (UserId != "0")
         {
             Log.d("L'ID", UserId);
-            putUserInDB();
+            if (!userIsInDb())
+                putUserInDB();
+            registerUserInExternalDB();
         }
     }
+
+    @Override
+    public void startActivity(Intent intent) {
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            intent.putExtra("UserId", UserId);
+        }
+        super.startActivity(intent);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -62,8 +79,19 @@ public class HomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(HomeActivity.this, MainActivity.class);
                 startActivity(intent);
         }
-
         return super.onOptionsItemSelected(item);
+    }
+
+    private boolean userIsInDb()
+    {
+        UsersManager u = new UsersManager(this);
+        Users user;
+        u.open();
+        user = u.getUsers(Long.parseLong(UserId));
+        if (user.getName() != "") {
+            return true;
+        }
+        return false;
     }
 
     private void putUserInDB()
@@ -72,6 +100,18 @@ public class HomeActivity extends AppCompatActivity {
         u.open();
         u.addUsers(new Users(Long.parseLong(UserId),UserName));
         u.close();
+    }
+
+    private void registerUserInExternalDB()
+    {
+        PostAsync post = new PostAsync();
+        post.execute("users", UserId, UserName);
+        try {
+            String response = post.get().toString();
+            System.out.println(response);
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 
     private void logAllUsersFromDB()
