@@ -51,9 +51,10 @@ function replyMovie(request, res, reply, user) {
                 });
             }));
         });
-        Promise.all(promises).then(() => {
+        if (promises.length < 1)
             reply(ret);
-        });
+        else
+            Promise.all(promises).then(() => reply(ret));
     } catch (error) {
         logger.error(error);
         reply(Boom.badImplementation());
@@ -61,27 +62,23 @@ function replyMovie(request, res, reply, user) {
 }
 
 /**
- * POST /movies/search
- *
- */
-/**
   * @api {post} /movies/search Request search movies.
   * @apiName searchMovie
   * @apiGroup Movie
   *
   * @apiParam {String} idfb Id of the user in facebook.
-	* @apiParam {String} search Text to search.
+  * @apiParam {String} search Text to search.
   *
-  * @apiSuccess (200)
+  * @apiSuccess (200) {Array} result Array of all the movies requested.
+  * @apiSuccess (200) {String} title Title of a movie.
+  * @apiSuccess (200) {String} overview Overview of a movie.
   *
-  * @apiError (404) UserNotFound The id of the User was not found.
+  * @apiError (500) InternalServerError.
   */
 exports.searchMovie = async function(request, reply) {
     try {
         const user = await Users.get({fbid: request.payload.idfb});
-        MovieDB.searchMovie({
-            query: request.payload.search
-        }, (err, res) => {
+        MovieDB.searchMovie({ query: request.payload.search }, (err, res) => {
             if (!res.results || res.results.length < 1) {
                 reply([]);
                 return;
@@ -104,9 +101,7 @@ exports.getMovie = async function(request, reply) {
             return;
         }
         const movie = await UsersMovies.get({id_user: user.id, id_movie: request.params.idMovie});
-        MovieDB.movieInfo({
-            id: request.params.idMovie
-        }, (err, res) => {
+        MovieDB.movieInfo({ id: request.params.idMovie }, (err, res) => {
             computeAverageMark(user, res.id, (stat) => {
                 reply({
                     id: res.id,
@@ -177,16 +172,28 @@ exports.getMovies = async function(request, reply) {
     }
 };
 
-// POST /movies/discover/:idfb
+/**
+  * @api {get} /movies/discover/:idfb/:page Request discover movies.
+  * @apiName discoverMovie
+  * @apiGroup Movie
+  *
+  * @apiParam {String} idfb Id of the user in facebook.
+  * @apiParam {String} page Page number to request.
+  *
+  * @apiSuccess (200) {Array} result Array of all the movies requested.
+  * @apiSuccess (200) {String} title Title of a movie.
+  * @apiSuccess (200) {String} overview Overview of a movie.
+  *
+  * @apiError (500) ServerError.
+  */
 exports.discoverMovies = async function(request, reply) {
-    const user = await Users.get({fbid: request.params.idfb});
-
-    if (!user) {
-        reply(Boom.notFound());
-        return;
-    }
     try {
-        MovieDB.discoverMovie((err, res) => {
+        const user = await Users.get({ fbid: request.params.idfb });
+        MovieDB.discoverMovie({ page: request.params.page }, (err, res) => {
+            if (!res || !res.results || res.results.length < 1) {
+                reply([]);
+                return;
+            }
             replyMovie(request, res, reply, user);
         });
     } catch (error) {

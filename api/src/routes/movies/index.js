@@ -38,6 +38,11 @@ const routes = [
 		path:    '/movies/{idfb}',
 		handler: handler.getMovies,
 	},
+	{
+		method:  'GET',
+		path:    '/movies/discover/{idfb}/{page}',
+		handler: handler.discoverMovies,
+	}
 ];
 
 exports.register = function (server, options, next) {
