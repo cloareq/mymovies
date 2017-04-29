@@ -5,7 +5,6 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -23,16 +22,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import eu.epitech.mymovies.mymovies.Models.Movies;
 import eu.epitech.mymovies.mymovies.Models.RVAdapter;
+import eu.epitech.mymovies.mymovies.services.ImgDownloader;
 import eu.epitech.mymovies.mymovies.services.JSONParser;
 
 public class SearchActivity extends AppCompatActivity {
@@ -108,7 +105,18 @@ public class SearchActivity extends AppCompatActivity {
                 ImgDownloader imd = new ImgDownloader();
                 imd.execute(arr.getString("poster_path"));
                 Bitmap movie_image = imd.get();
-                movies.add(new Movies(arr.getString("title"), arr.getString("overview"), movie_image));
+
+                JSONArray jarr = arr.getJSONArray("comments");
+                List<String> list = new ArrayList<String>();
+                for (int j = 0; j < jarr.length(); j++)
+                {
+                    JSONObject jobj = jarr.getJSONObject(j);
+                    list.add(jobj.getString("comment"));
+                }
+
+                movies.add(new Movies(arr.getString("title"), arr.getString("overview"),
+                        arr.getString("poster_path"), movie_image, arr.getInt("id"), UserId,
+                        arr.getInt("averageMark"), list));
             } catch (JSONException | InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
@@ -124,12 +132,6 @@ public class SearchActivity extends AppCompatActivity {
 
             SearchMoviesAsync search = new SearchMoviesAsync();
             search.execute(UserId, query);
-            try {
-                JSONArray response = search.get();
-                setMoviesList(response);
-            } catch (InterruptedException | ExecutionException e) {
-                e.printStackTrace();
-            }
         }
     }
 
@@ -142,7 +144,6 @@ public class SearchActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             pd=ProgressDialog.show(SearchActivity.this,"","Please Wait",false);
-            pd.show();
         }
 
         @Override
@@ -170,46 +171,10 @@ public class SearchActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(JSONArray json) {
+        protected void onPostExecute(JSONArray response) {
+            setMoviesList(response);
             pd.dismiss();
         }
 
     }
-
-    public class ImgDownloader extends AsyncTask<String, Void, Bitmap> {
-
-        private ProgressDialog dialog = new ProgressDialog(SearchActivity.this);
-
-        /** progress dialog to show user that the backup is processing. */
-        /** application context. */
-        @Override
-        protected void onPreExecute() {
-            this.dialog.setMessage("Please wait");
-            this.dialog.show();
-        }
-
-
-
-        protected Bitmap doInBackground(String... param) {
-            try {
-                URL url = new URL(param[0]);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setDoInput(true);
-                connection.connect();
-                InputStream input = connection.getInputStream();
-                Bitmap myBitmap = BitmapFactory.decodeStream(input);
-                return myBitmap;
-            } catch (IOException e) {System.out.println("Error :: [" + e + "]");}
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Bitmap bp) {
-            if (dialog.isShowing()) {
-                dialog.dismiss();
-            }
-        }
-    }
-
-
 }

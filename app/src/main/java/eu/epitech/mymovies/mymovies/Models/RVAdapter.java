@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import eu.epitech.mymovies.mymovies.HomeActivity;
 import eu.epitech.mymovies.mymovies.MovieActivity;
 import eu.epitech.mymovies.mymovies.R;
 
@@ -41,15 +41,21 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MovieViewHolder>{
 
     @Override
     public void onBindViewHolder(final MovieViewHolder movieViewHolder, final int i) {
+
         movieViewHolder.movieTitle.setText(movies.get(i).title);
         movieViewHolder.movieResume.setText(movies.get(i).overview);
         movieViewHolder.moviePicture.setImageBitmap(movies.get(i).photoId);
-
         movieViewHolder.moviePicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println(movies.get(i).title);
                 Intent intent = new Intent(context, MovieActivity.class);
+                intent.putExtra("TITLE", movies.get(i).title);
+                intent.putExtra("RESUME", movies.get(i).overview);
+                intent.putExtra("IMGURL", movies.get(i).imageURL);
+                intent.putExtra("ID", movies.get(i).id);
+                intent.putExtra("USERID", movies.get(i).userId);
+                intent.putExtra("MARK", movies.get(i).mark);
+                intent.putStringArrayListExtra("COMMENTS", (ArrayList<String>) movies.get(i).comments);
                 context.startActivity(intent);
             }
         });

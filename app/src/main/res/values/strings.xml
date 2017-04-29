@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MyMovies</string>
+    <string name="write_a_comment">Write a comment</string>
+    <string name="send_comment">Send comment</string>
 </resources>

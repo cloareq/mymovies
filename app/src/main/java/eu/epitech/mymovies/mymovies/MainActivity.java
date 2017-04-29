@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                System.out.println("CONNECTED");
                 token = loginResult.getAccessToken();
                 String UserToken = loginResult.getAccessToken().getToken();
                 ConnectToFacebook();
@@ -73,8 +72,6 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             UserName = Response.getString("name");
                             UserId = Response.getString("id");
-                            System.out.println(UserName);
-                            System.out.println(UserId);
 
                             //pour rediriger vers la home activity quand on est bien connecté
                             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
