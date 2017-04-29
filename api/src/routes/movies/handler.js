@@ -11,21 +11,34 @@ async function computeAverageMark(user, movieId, callback, idx) {
     // Get all mark for the movie ! then compute average
     let averageMark;
     let comments = [];
+    let promises = [];
+    let sumMark = 0;
     if (movie) {
-        let sumMark = 0;
         movie.forEach(m => {
-            sumMark += m.mark;
-            if (m.idUser != user.id) {
-                comments.push(m.comment);
-            }
+            promises.push(new Promise(async function(resolve, reject) {
+                try {
+                    const userComment = await Users.get({id: this.idUser});
+                    sumMark += this.mark;
+                    comments.push({
+                        name: userComment.name,
+                        comment: this.comment
+                    });
+                    resolve(comments);
+                } catch (error) {
+                    logger.error(error);
+                    reject(error);
+                    reply(Boom.badImplementation());
+                }
+
+            }.bind(m)));
         });
-        averageMark = sumMark / movie.length;
     }
-    callback({
-        averageMark: averageMark,
-        comments: comments
-    }, idx);
-    return {averageMark: averageMark, comments: comments};
+    Promise.all(promises).then(() => {
+        callback({
+            averageMark: movie ? sumMark / movie.length : undefined,
+            comments: comments
+        }, idx);
+    })
 }
 
 function replyMovie(request, res, reply, user) {
@@ -42,8 +55,8 @@ function replyMovie(request, res, reply, user) {
                         overview: el.overview,
                         original_title: el.original_title,
                         comment: userMovie.comment,
-                        mark: userMovie.mark,
-                        averageMark: stat.averageMark,
+                        mark: userMovie.mark || 0,
+                        averageMark: stat.averageMark || 0,
                         comments: stat.comments,
                         poster_path: `${IMG_BASE_URL}${el.poster_path}`
                     });
@@ -109,8 +122,8 @@ exports.getMovie = async function(request, reply) {
                     overview: res.overview,
                     original_title: res.original_title,
                     comment: movie.comment,
-                    mark: movie.mark,
-                    averageMark: stat.averageMark,
+                    mark: movie.mark || 0,
+                    averageMark: stat.averageMark || 0,
                     comments: stat.comments,
                     poster_path: `${IMG_BASE_URL}${res.poster_path}`
                 });
@@ -153,8 +166,8 @@ exports.getMovies = async function(request, reply) {
                             overview: res.overview,
                             original_title: res.original_title,
                             comment: movie.comment,
-                            mark: movie.mark,
-                            averageMark: stat.averageMark,
+                            mark: movie.mark || 0,
+                            averageMark: stat.averageMark || 0,
                             comments: stat.comments,
                             poster_path: `${IMG_BASE_URL}${res.poster_path}`
                         });
@@ -224,6 +237,7 @@ exports.updateMovie = async function(request, reply) {
                 id_movie: request.params.idMovie,
                 mark: request.payload.mark || userMovie.mark,
                 comment: request.payload.comment || userMovie.comment
+//                date: new Date().toString()
             });
         } else {
             userMovie = UsersMovies.create({
@@ -231,6 +245,7 @@ exports.updateMovie = async function(request, reply) {
                 id_movie: request.params.idMovie,
                 mark: request.payload.mark || 0,
                 comment: request.payload.comment || ''
+//                date: new Date().toString()
             });
         }
         reply(userMovie);
