@@ -56,7 +56,7 @@ function replyMovie(request, res, reply, user) {
                         original_title: el.original_title,
                         comment: userMovie.comment,
                         mark: userMovie.mark || 0,
-                        averageMark: stat.averageMark,
+                        averageMark: stat.averageMark || 0,
                         comments: stat.comments,
                         poster_path: `${IMG_BASE_URL}${el.poster_path}`
                     });
@@ -123,7 +123,7 @@ exports.getMovie = async function(request, reply) {
                     original_title: res.original_title,
                     comment: movie.comment,
                     mark: movie.mark || 0,
-                    averageMark: stat.averageMark,
+                    averageMark: stat.averageMark || 0,
                     comments: stat.comments,
                     poster_path: `${IMG_BASE_URL}${res.poster_path}`
                 });
@@ -167,7 +167,7 @@ exports.getMovies = async function(request, reply) {
                             original_title: res.original_title,
                             comment: movie.comment,
                             mark: movie.mark || 0,
-                            averageMark: stat.averageMark,
+                            averageMark: stat.averageMark || 0,
                             comments: stat.comments,
                             poster_path: `${IMG_BASE_URL}${res.poster_path}`
                         });
