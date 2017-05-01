@@ -45,14 +45,11 @@ public class HomeActivity extends AppCompatActivity {
                 putUserInDB();
             registerUserInExternalDB();
         }
-
         putMovieInHomePage();
-
     }
 
     private void putMovieInHomePage()
     {
-
 
     }
 
