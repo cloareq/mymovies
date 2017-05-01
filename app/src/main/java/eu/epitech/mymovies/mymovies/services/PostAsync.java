@@ -7,8 +7,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-import eu.epitech.mymovies.mymovies.services.JSONParser;
-
 public class PostAsync extends AsyncTask<String, String, JSONObject> {
 
     JSONParser jsonParser = new JSONParser();

@@ -4,6 +4,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import eu.epitech.mymovies.mymovies.Controllers.MovieManager;
 import eu.epitech.mymovies.mymovies.Controllers.UsersManager;
 
 public class MySQLite extends SQLiteOpenHelper {
@@ -24,6 +25,7 @@ public class MySQLite extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(UsersManager.CREATE_TABLE_Users);
+        sqLiteDatabase.execSQL(MovieManager.CREATE_TABLE_MOVIES);
     }
 
     @Override

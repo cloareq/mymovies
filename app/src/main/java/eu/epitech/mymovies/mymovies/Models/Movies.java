@@ -26,4 +26,36 @@ public class Movies {
         this.mark = mark;
         this.comments = comments;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public Bitmap getPhotoId() {
+        return photoId;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public int getMark() {
+        return mark;
+    }
+
+    public List<String> getComments() {
+        return comments;
+    }
 }

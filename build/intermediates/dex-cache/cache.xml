@@ -12,15 +12,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/cloare_q/mymovies/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/Users/cloare_q/mymovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.1.0_2c1d1d63923c5e1002d83401c450e184befc1ad0/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/cloare_q/mymovies/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -30,48 +21,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/cloare_q/mymovies/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="6fb6ac3e8d3b9013819920d9ea11f3803c4c0033">
-        <dex dex="/Users/cloare_q/mymovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-25.1.0_7eb2bc292d494d86aba4a0c84303a673dd0d4180/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/cloare_q/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
         <dex dex="/Users/cloare_q/mymovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/bolts-tasks-1.4.0_4b248d93dfeaea5439924b797aa4e28aa5a90e54/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/cloare_q/mymovies/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.1.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="b266c8faa5af72e579b9da36ef35053ffed6ac64">
-        <dex dex="/Users/cloare_q/mymovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-25.1.0_4c2a243cf3d06637ad5deb13da35d588e0caccb6/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/cloare_q/mymovies/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="5ddaf53e0e6ea89df9dfeb4fc70492e70b0fabcd">
-        <dex dex="/Users/cloare_q/mymovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_32a0ce11dd39672e8846a4e7943ae9eb013e78ab/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/cloare_q/mymovies/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="1630658fbc2d222b988603c27b4a4249586fbfe7">
-        <dex dex="/Users/cloare_q/mymovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-25.1.0_b075473a544edf83c421507a5231ab623f75c854/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -102,6 +57,69 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/cloare_q/mymovies/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.22.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0d94c39080a309d1887f50ef68cc96dfe4bc9d01">
+        <dex dex="/Users/cloare_q/mymovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.android-facebook-android-sdk-4.22.0_0e1feb2a6c3b136e8d7ef076ebc5050050661a11/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/cloare_q/mymovies/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="96ca80b99699a1cbd5a04c195d8a6787d54e3e2b">
+        <dex dex="/Users/cloare_q/mymovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_d165352ad9e607c128b009c2e9ef133e4cff476f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/cloare_q/mymovies/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/cloare_q/mymovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.1.0_2c1d1d63923c5e1002d83401c450e184befc1ad0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/cloare_q/mymovies/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6fb6ac3e8d3b9013819920d9ea11f3803c4c0033">
+        <dex dex="/Users/cloare_q/mymovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-25.1.0_7eb2bc292d494d86aba4a0c84303a673dd0d4180/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/cloare_q/mymovies/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b266c8faa5af72e579b9da36ef35053ffed6ac64">
+        <dex dex="/Users/cloare_q/mymovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-25.1.0_4c2a243cf3d06637ad5deb13da35d588e0caccb6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/cloare_q/mymovies/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="922d9f9975a1ba843365c073d1d408b992e58a56">
+        <dex dex="/Users/cloare_q/mymovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_32a0ce11dd39672e8846a4e7943ae9eb013e78ab/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/cloare_q/mymovies/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1630658fbc2d222b988603c27b4a4249586fbfe7">
+        <dex dex="/Users/cloare_q/mymovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-25.1.0_b075473a544edf83c421507a5231ab623f75c854/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/cloare_q/mymovies/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -117,24 +135,6 @@
         revision="25.0.2"
         sha1="94ba691efc31bf53264db0716d9c9ec03843ea31">
         <dex dex="/Users/cloare_q/mymovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-customtabs-25.0.0_c728205758a4fb05a26819cdd3563fd347371b63/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/cloare_q/mymovies/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.22.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="0d94c39080a309d1887f50ef68cc96dfe4bc9d01">
-        <dex dex="/Users/cloare_q/mymovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.android-facebook-android-sdk-4.22.0_0e1feb2a6c3b136e8d7ef076ebc5050050661a11/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/cloare_q/mymovies/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d2fe365d23fb5b51a3f87abfb20d3ce6d474d63b">
-        <dex dex="/Users/cloare_q/mymovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_d165352ad9e607c128b009c2e9ef133e4cff476f/classes.dex" />
     </item>
     <item
         is-multidex="true"

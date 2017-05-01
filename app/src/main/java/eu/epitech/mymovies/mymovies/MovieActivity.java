@@ -36,6 +36,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+import eu.epitech.mymovies.mymovies.Controllers.MovieManager;
+import eu.epitech.mymovies.mymovies.Controllers.UsersManager;
+import eu.epitech.mymovies.mymovies.Models.Movies;
+import eu.epitech.mymovies.mymovies.Models.Users;
 import eu.epitech.mymovies.mymovies.services.ImgDownloader;
 
 public class MovieActivity extends AppCompatActivity {
@@ -92,6 +96,7 @@ public class MovieActivity extends AppCompatActivity {
                 userComment = commentText.getText().toString();
                 rate = (float) (Math.round(mRatingBar.getRating() * 2) / 2.0);
                 SendCommentAsync sca = new SendCommentAsync();
+                saveMovieInDb();
                 sca.execute();
                 try {
                     sca.get();
@@ -106,6 +111,15 @@ public class MovieActivity extends AppCompatActivity {
             }
         }
     };
+
+    private void saveMovieInDb()
+    {
+        MovieManager u = new MovieManager(this);
+        u.open();
+        Movies movie = new Movies(title, resume, imgurl, img, id, userid, mark, comments);
+        u.addMovie(movie, Long.parseLong(userid), img);
+        u.close();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
