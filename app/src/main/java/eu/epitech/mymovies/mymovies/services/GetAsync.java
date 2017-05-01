@@ -27,8 +27,6 @@ public class GetAsync extends AsyncTask<String, String, JSONObject> {
                     URL, "GET", null);
 
             if (json != null) {
-                Log.d("JSON result", json.toString());
-                System.out.println("JSON --->" + json);
                 return json;
             }
 

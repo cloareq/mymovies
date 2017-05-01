@@ -125,6 +125,7 @@ public class MovieActivity extends AppCompatActivity {
             case R.id.logout:
                 LoginManager.getInstance().logOut();
                 Intent intent = new Intent(MovieActivity.this, MainActivity.class);
+
                 startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
