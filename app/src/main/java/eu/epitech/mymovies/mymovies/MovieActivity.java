@@ -96,7 +96,10 @@ public class MovieActivity extends AppCompatActivity {
                 try {
                     sca.get();
                     finish();
-                    startActivity(getIntent());
+                    Intent intent = getIntent();
+                    comments.add(commentText.getText().toString());
+                    intent.putStringArrayListExtra("COMMENTS", comments);
+                    startActivity(intent);
                 } catch (InterruptedException | ExecutionException e) {
                     e.printStackTrace();
                 }
