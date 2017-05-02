@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             }
             @Override
             public void onError(FacebookException error) {
-                System.out.println("ERROR");
+                System.out.println(error.toString());
             }
         });
     }

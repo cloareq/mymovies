@@ -37,9 +37,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import eu.epitech.mymovies.mymovies.Controllers.MovieManager;
-import eu.epitech.mymovies.mymovies.Controllers.UsersManager;
 import eu.epitech.mymovies.mymovies.Models.Movies;
-import eu.epitech.mymovies.mymovies.Models.Users;
 import eu.epitech.mymovies.mymovies.services.ImgDownloader;
 
 public class MovieActivity extends AppCompatActivity {
@@ -49,7 +47,7 @@ public class MovieActivity extends AppCompatActivity {
     String userid;
     int id;
     Bitmap img;
-    int mark;
+    float mark;
     ArrayList<String> comments;
     Button sendCommentButton;
     EditText commentText;
@@ -68,7 +66,7 @@ public class MovieActivity extends AppCompatActivity {
         imgurl = intent.getStringExtra("IMGURL");
         id = intent.getIntExtra("ID", 0);
         userid = intent.getStringExtra("USERID");
-        mark = intent.getIntExtra("MARK", 0);
+        mark = intent.getFloatExtra("MARK", 0);
         comments = getIntent().getStringArrayListExtra("COMMENTS");
         sendCommentButton = (Button) findViewById(R.id.send_comment);
         sendCommentButton.setOnClickListener(sendComment);
@@ -103,6 +101,8 @@ public class MovieActivity extends AppCompatActivity {
                     finish();
                     Intent intent = getIntent();
                     comments.add(commentText.getText().toString());
+                    float userRate = (float) (Math.round(mRatingBar.getRating() * 2) / 2.0);
+                    intent.putExtra("MARK", userRate);
                     intent.putStringArrayListExtra("COMMENTS", comments);
                     startActivity(intent);
                 } catch (InterruptedException | ExecutionException e) {
@@ -186,7 +186,7 @@ public class MovieActivity extends AppCompatActivity {
 
     public class SendCommentAsync extends AsyncTask<Void, Void, Void>
     {
-        String LOGIN_URL = "http://landswar.com:3000/movies/"+ userid + "/" + id;
+        String LOGIN_URL = getResources().getString(R.string.api) + userid + "/" + id;
 
         @Override
         protected void onPreExecute() {

@@ -1,10 +1,12 @@
 package eu.epitech.mymovies.mymovies.services;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import org.json.JSONObject;
 
+import eu.epitech.mymovies.mymovies.R;
 import eu.epitech.mymovies.mymovies.services.JSONParser;
 
 public class GetAsync extends AsyncTask<String, String, JSONObject> {
@@ -18,8 +20,7 @@ public class GetAsync extends AsyncTask<String, String, JSONObject> {
     @Override
     protected JSONObject doInBackground(String... args) {
         try {
-
-            String URL = "http://landswar.com:3000/" + args[0];
+            String URL = args[0];
 
             Log.d("request", "starting");
 

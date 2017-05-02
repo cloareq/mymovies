@@ -114,7 +114,7 @@ public class HomeActivity extends AppCompatActivity {
     private void registerUserInExternalDB()
     {
         PostAsync post = new PostAsync();
-        post.execute("users", UserId, UserName);
+        post.execute(getResources().getString(R.string.loginurl), UserId, UserName);
         try {
             String response = post.get().toString();
             System.out.println(response);

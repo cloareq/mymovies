@@ -2,4 +2,6 @@
     <string name="app_name">MyMovies</string>
     <string name="write_a_comment">Write a comment</string>
     <string name="send_comment">Send comment</string>
+    <string name="api">https://apibeta.landswar.com/movies/</string>
+    <string name="loginurl">https://apibeta.landswar.com/users</string>
 </resources>

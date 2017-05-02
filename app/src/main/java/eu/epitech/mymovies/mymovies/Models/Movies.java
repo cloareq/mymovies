@@ -11,12 +11,12 @@ public class Movies {
     Bitmap photoId;
     String imageURL;
     String userId;
-    int mark;
+    float mark;
     int id;
     List<String> comments;
 
     public Movies(String title, String overview, String imageURL,
-                  Bitmap photoId, int id, String userId, int mark, List<String> comments) {
+                  Bitmap photoId, int id, String userId, float mark, List<String> comments) {
         this.title = title;
         this.overview = overview;
         this.photoId = photoId;
@@ -51,7 +51,7 @@ public class Movies {
         return userId;
     }
 
-    public int getMark() {
+    public float getMark() {
         return mark;
     }
 

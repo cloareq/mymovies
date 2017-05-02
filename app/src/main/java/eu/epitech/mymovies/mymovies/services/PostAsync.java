@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class PostAsync extends AsyncTask<String, String, JSONObject> {
 
     JSONParser jsonParser = new JSONParser();
-    String LOGIN_URL = "http://landswar.com:3000/";
+    String LOGIN_URL;
 
 
     @Override
@@ -21,7 +21,7 @@ public class PostAsync extends AsyncTask<String, String, JSONObject> {
     protected JSONObject doInBackground(String... args) {
 
         try {
-            LOGIN_URL += args[0];
+            LOGIN_URL = args[0];
             HashMap<String, String> params = new HashMap<>();
             params.put("idfb", args[1]);
             params.put("name", args[2]);

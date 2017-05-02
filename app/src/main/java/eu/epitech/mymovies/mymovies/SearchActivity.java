@@ -138,7 +138,7 @@ public class SearchActivity extends AppCompatActivity {
     public class SearchMoviesAsync extends AsyncTask<String, String, JSONArray> {
         ProgressDialog pd;
         JSONParser jsonParser = new JSONParser();
-        String URL = "http://landswar.com:3000/movies/search";
+        String URL = getResources().getString(R.string.api) + "search";
 
 
         @Override
