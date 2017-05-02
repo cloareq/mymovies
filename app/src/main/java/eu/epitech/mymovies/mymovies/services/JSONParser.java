@@ -16,7 +16,11 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
+import eu.epitech.mymovies.mymovies.Models.Movies;
 
 public class JSONParser {
 
@@ -285,5 +289,30 @@ public class JSONParser {
 
         // return JSON Object
         return jArray;
+    }
+
+    public static List<Movies> jsonToMovies(JSONArray jsonArray) {
+        List<Movies> listMovies = new ArrayList<Movies>();
+        try {
+            for (int n = 0; n < jsonArray.length(); n++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(n);
+                Movies movies = new Movies();
+                movies.setId(jsonObject.getInt("id"));
+                movies.setTitle(jsonObject.getString("title"));
+                movies.setOverview(jsonObject.getString("overview"));
+                movies.setMark(jsonObject.getInt("mark"));
+                movies.setImageURL(jsonObject.getString("poster_path"));
+                JSONArray jsonComments = jsonObject.getJSONArray("comments");
+                List<String> comments = new ArrayList<String>();
+                for (int i = 0; i < jsonComments.length(); i++) {
+                    comments.add(jsonComments.getString(i));
+                }
+                movies.setComments(comments);
+                listMovies.add(movies);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return listMovies;
     }
 }

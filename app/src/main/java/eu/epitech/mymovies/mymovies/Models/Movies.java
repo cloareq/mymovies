@@ -15,6 +15,11 @@ public class Movies {
     int id;
     List<String> comments;
 
+    @Override
+    public String toString() {
+        return "id:" + id + " title:" + title + " imageURL:" + imageURL + " mark:" + mark + " overview:" + overview;
+    }
+
     public void setComments(List<String> comments) {
         this.comments = comments;
     }
