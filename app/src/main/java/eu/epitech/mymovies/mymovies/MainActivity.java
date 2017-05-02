@@ -1,6 +1,9 @@
 package eu.epitech.mymovies.mymovies;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -24,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private AccessToken token;
     private String UserName;
     private String UserId;
+    SharedPreferences settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,28 +37,42 @@ public class MainActivity extends AppCompatActivity {
         loginButton = (LoginButton)findViewById(R.id.login_button);
         callbackManager = CallbackManager.Factory.create();
 
-        if (AccessToken.getCurrentAccessToken()!=null) { // si il est deja connecte en cache
-            token = AccessToken.getCurrentAccessToken();
-            ConnectToFacebook();
+        if (!isNetworkAvailable()) // pas internet
+        {
+            System.out.println("PAS INTERNET");
+            settings = getSharedPreferences("MYMOVIES", 0);
+            UserId = settings.getString("USERID", "null");
+            Intent intent = new Intent(MainActivity.this, UserActivity.class);
+            intent.putExtra("USERID", UserId);
+            startActivity(intent);
         }
+        else {
 
-
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                token = loginResult.getAccessToken();
-                String UserToken = loginResult.getAccessToken().getToken();
+            if (AccessToken.getCurrentAccessToken() != null) { // si il est deja connecte en cache
+                token = AccessToken.getCurrentAccessToken();
                 ConnectToFacebook();
             }
-            @Override
-            public void onCancel() {
-                System.out.println("CANCEL");
-            }
-            @Override
-            public void onError(FacebookException error) {
-                System.out.println(error.toString());
-            }
-        });
+
+
+            loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+                @Override
+                public void onSuccess(LoginResult loginResult) {
+                    token = loginResult.getAccessToken();
+                    String UserToken = loginResult.getAccessToken().getToken();
+                    ConnectToFacebook();
+                }
+
+                @Override
+                public void onCancel() {
+                    System.out.println("CANCEL");
+                }
+
+                @Override
+                public void onError(FacebookException error) {
+                    System.out.println(error.toString());
+                }
+            });
+        }
     }
 
     @Override
@@ -73,6 +91,13 @@ public class MainActivity extends AppCompatActivity {
                             UserName = Response.getString("name");
                             UserId = Response.getString("id");
 
+                            //on save le name et l'id en cache pour pouvoir utiliser l'application en offline
+                            settings = getSharedPreferences("MYMOVIES", 0);
+                            SharedPreferences.Editor editor = settings.edit();
+                            editor.putString("USERID", UserId);
+                            editor.putString("USERNAME", UserName);
+                            editor.commit();
+
                             //pour rediriger vers la home activity quand on est bien connecté
                             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                             intent.putExtra("USERNAME", UserName);
@@ -87,6 +112,13 @@ public class MainActivity extends AppCompatActivity {
         parameters.putString("fields", "id,name");
         request.setParameters(parameters);
         request.executeAsync();
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(this.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }
 

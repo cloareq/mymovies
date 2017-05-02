@@ -32,10 +32,6 @@ public class UserActivity extends AppCompatActivity {
         MovieManager movieManager = new MovieManager(this);
         movieManager.open();
         listMovies = movieManager.getUserMovies(Long.parseLong(userId));
-        for (int i = 0; i < listMovies.size(); i++) {
-            String title = listMovies.get(i).getTitle();
-            System.out.println(title);
-        }
         movieManager.close();
         createRecyclerView();
     }
