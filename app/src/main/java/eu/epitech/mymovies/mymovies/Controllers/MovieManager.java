@@ -7,6 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.text.TextUtils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import eu.epitech.mymovies.mymovies.Models.Movies;
 import eu.epitech.mymovies.mymovies.Models.Users;
 import eu.epitech.mymovies.mymovies.services.ByteToData;
@@ -71,35 +75,26 @@ public class MovieManager {
         return db.insert(TABLE_NAME,null,values);
     }
 
-//    public int modUsers(Users user) {
-//        ContentValues values = new ContentValues();
-//        values.put(KEY_NOM_Users, user.getName());
-//
-//        String where = KEY_ID_Users+" = ?";
-//        String[] whereArgs = {user.getId()+""};
-//
-//        return db.update(TABLE_NAME, values, where, whereArgs);
-//    }
-
-//    public int supUsers(Users user) {
-//        String where = KEY_ID_Users+" = ?";
-//        String[] whereArgs = {user.getId()+""};
-//
-//        return db.delete(TABLE_NAME, where, whereArgs);
-//    }
-
-    public Users getUsers(long id) {
-        Users u=new Users(0,"");
-
-        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_MOVIE+"="+id, null);
+    public List<Movies> getUserMovies(long id) {
+        List<Movies> listMovies = new ArrayList<>();
+        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_USERID+"="+id, null);
         if (c.moveToFirst()) {
-            u.setId(c.getInt(c.getColumnIndex(KEY_ID_MOVIE)));
-            u.setName(c.getString(c.getColumnIndex(KEY_TITLE)));
-            c.close();
+            do {
+                Movies m =new Movies();
+                m.setTitle(c.getString(c.getColumnIndex(KEY_TITLE)));
+                m.setOverview(c.getString(c.getColumnIndex(KEY_RESUME)));
+                m.setPhotoId(ByteToData.getImage(c.getBlob(c.getColumnIndex(KEY_PICTURE))));
+                m.setUserId(c.getString(c.getColumnIndex(KEY_USERID)));
+                m.setMark(c.getFloat(c.getColumnIndex(KEY_RATE)));
+                String[] comments = c.getString(c.getColumnIndex(KEY_COMMENT)).split(",");
+                m.setComments(Arrays.asList(comments));
+                listMovies.add(m);
+            } while (c.moveToNext());
         }
-
-        return u;
+        return listMovies;
     }
+
+
 
     public Cursor getUsers() {
         return db.rawQuery("SELECT * FROM "+TABLE_NAME, null);

@@ -138,12 +138,15 @@ public class MovieActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         switch (item.getItemId()){
             case R.id.logout:
                 LoginManager.getInstance().logOut();
                 Intent intent = new Intent(MovieActivity.this, MainActivity.class);
-
                 startActivity(intent);
+            case R.id.usermovies:
+                Intent intentUser = new Intent(MovieActivity.this, UserActivity.class);
+                startActivity(intentUser);
         }
         return super.onOptionsItemSelected(item);
     }

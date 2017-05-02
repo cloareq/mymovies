@@ -81,12 +81,17 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) { //ca c'est pour le logout, je sais pas si y'a une meilleur facon de le faire
+    public boolean onOptionsItemSelected(MenuItem item) {
+
         switch (item.getItemId()){
             case R.id.logout:
                 LoginManager.getInstance().logOut();
                 Intent intent = new Intent(HomeActivity.this, MainActivity.class);
                 startActivity(intent);
+            case R.id.usermovies:
+                Intent intentUser = new Intent(HomeActivity.this, UserActivity.class);
+                intentUser.putExtra("USERID", UserId);
+                startActivity(intentUser);
         }
         return super.onOptionsItemSelected(item);
     }

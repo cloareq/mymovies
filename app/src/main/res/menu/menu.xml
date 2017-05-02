@@ -16,5 +16,10 @@
         android:icon="@drawable/ic_home"
         android:title="home"
         app:showAsAction="always" />
+    <item android:id="@+id/usermovies"
+        android:icon="@drawable/ic_usermovies"
+        android:title="movies"
+        app:showAsAction="always" />
+
 
 </menu>

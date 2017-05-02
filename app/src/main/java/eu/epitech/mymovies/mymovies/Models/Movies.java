@@ -15,6 +15,10 @@ public class Movies {
     int id;
     List<String> comments;
 
+    public void setComments(List<String> comments) {
+        this.comments = comments;
+    }
+
     public Movies(String title, String overview, String imageURL,
                   Bitmap photoId, int id, String userId, float mark, List<String> comments) {
         this.title = title;
@@ -25,6 +29,9 @@ public class Movies {
         this.userId = userId;
         this.mark = mark;
         this.comments = comments;
+    }
+
+    public Movies() {
     }
 
     public int getId() {
@@ -57,5 +64,33 @@ public class Movies {
 
     public List<String> getComments() {
         return comments;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public void setPhotoId(Bitmap photoId) {
+        this.photoId = photoId;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public void setMark(float mark) {
+        this.mark = mark;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
