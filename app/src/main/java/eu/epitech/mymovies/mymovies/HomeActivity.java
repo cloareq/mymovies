@@ -40,8 +40,6 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        System.out.println("UserId:" + UserId);
-
         Intent intent = getIntent();
         UserName = intent.getStringExtra("USERNAME");
         UserId = intent.getStringExtra("USERID");
@@ -65,8 +63,6 @@ public class HomeActivity extends AppCompatActivity {
         try {
             listMovies = JSONParser.jsonToMovies(get.get());
             String response = get.get().toString();
-            System.out.println(response);
-            System.out.println(listMovies);
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
