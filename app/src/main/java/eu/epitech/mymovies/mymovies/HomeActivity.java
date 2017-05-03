@@ -84,7 +84,7 @@ public class HomeActivity extends AppCompatActivity {
                 intent.putExtra("RESUME", finalListMovies.get(position).getOverview());
                 intent.putExtra("IMGURL", finalListMovies.get(position).getImageURL());
                 intent.putExtra("ID", finalListMovies.get(position).getId());
-                intent.putExtra("USERID", finalListMovies.get(position).getUserId());
+                intent.putExtra("USERID", UserId);
                 intent.putExtra("MARK", finalListMovies.get(position).getMark());
                 intent.putStringArrayListExtra("COMMENTS", (ArrayList<String>) finalListMovies.get(position).getComments());
                 context.startActivity(intent);
