@@ -32,6 +32,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
 import eu.epitech.mymovies.mymovies.Controllers.UsersManager;
@@ -61,7 +62,9 @@ public class HomeActivity extends AppCompatActivity {
             Log.d("L'ID", UserId);
             if (!userIsInDb())
                 putUserInDB();
-            registerUserInExternalDB();
+            if (!Objects.equals("null", UserName)) {
+                registerUserInExternalDB();
+            }
         }
         putMovieInHomePage();
     }
