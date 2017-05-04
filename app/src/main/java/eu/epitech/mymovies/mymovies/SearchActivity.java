@@ -76,15 +76,18 @@ public class SearchActivity extends AppCompatActivity {
                 LoginManager.getInstance().logOut();
                 Intent intent = new Intent(SearchActivity.this, MainActivity.class);
                 startActivity(intent);
+                return true;
             case R.id.usermovies:
                 Intent intentUser = new Intent(SearchActivity.this, UserActivity.class);
                 intentUser.putExtra("USERID", UserId);
                 startActivity(intentUser);
+                return true;
             case R.id.home:
                 Intent intentHome = new Intent(SearchActivity.this, HomeActivity.class);
                 intentHome.putExtra("USERID", UserId);
                 intentHome.putExtra("USERNAME", "null");
                 startActivity(intentHome);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

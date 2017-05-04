@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -140,19 +141,22 @@ public class MovieActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.logout:
-                LoginManager.getInstance().logOut();
-                Intent intent = new Intent(MovieActivity.this, MainActivity.class);
-                startActivity(intent);
-            case R.id.usermovies:
-                Intent intentUser = new Intent(MovieActivity.this, UserActivity.class);
-                intentUser.putExtra("USERID", userid);
-                startActivity(intentUser);
             case R.id.home:
                 Intent intentHome = new Intent(MovieActivity.this, HomeActivity.class);
                 intentHome.putExtra("USERID", userid);
                 intentHome.putExtra("USERNAME", "null");
                 startActivity(intentHome);
+                return true;
+            case R.id.logout:
+                LoginManager.getInstance().logOut();
+                Intent intent = new Intent(MovieActivity.this, MainActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.usermovies:
+                Intent intentUser = new Intent(MovieActivity.this, UserActivity.class);
+                intentUser.putExtra("USERID", userid);
+                startActivity(intentUser);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
