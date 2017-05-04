@@ -307,7 +307,7 @@ public class JSONParser {
                 for (int j = 0; j < jsonComments.length(); j++)
                 {
                     JSONObject jobj = jsonComments.getJSONObject(j);
-                    list.add(jobj.getString("comment"));
+                    list.add(jobj.getString("name") + ": " + jobj.getString("comment"));
                 }
                 movies.setComments(list);
                 listMovies.add(movies);

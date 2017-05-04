@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Movie;
 import android.os.AsyncTask;
@@ -102,7 +103,9 @@ public class MovieActivity extends AppCompatActivity {
                     sca.get();
                     finish();
                     Intent intent = getIntent();
-                    comments.add(commentText.getText().toString());
+                    SharedPreferences settings = getSharedPreferences("MYMOVIES", 0);
+                    String userName = settings.getString("USERNAME", "null");
+                    comments.add(userName + ": " + commentText.getText().toString());
                     float userRate = (float) (Math.round(mRatingBar.getRating() * 2) / 2.0);
                     intent.putExtra("MARK", userRate);
                     intent.putStringArrayListExtra("COMMENTS", comments);
@@ -194,7 +197,6 @@ public class MovieActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(MovieActivity.this,
                 android.R.layout.simple_list_item_1, comments);
         listComments.setAdapter(adapter);
-
     }
 
     public class SendCommentAsync extends AsyncTask<Void, Void, Void>

@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -110,7 +111,8 @@ public class SearchActivity extends AppCompatActivity {
 
     private void setMoviesList(JSONArray response)
     {
-
+        SharedPreferences settings = getSharedPreferences("MYMOVIES", 0);
+        String userName = settings.getString("USERNAME", "null");
         for (int i = 0; i < response.length(); i++) {
             try {
                 JSONObject arr = response.getJSONObject(i);
@@ -123,7 +125,7 @@ public class SearchActivity extends AppCompatActivity {
                 for (int j = 0; j < jarr.length(); j++)
                 {
                     JSONObject jobj = jarr.getJSONObject(j);
-                    list.add(jobj.getString("comment"));
+                    list.add(userName + ": " + jobj.getString("comment"));
                 }
 
                 movies.add(new Movies(arr.getString("title"), arr.getString("overview"),
