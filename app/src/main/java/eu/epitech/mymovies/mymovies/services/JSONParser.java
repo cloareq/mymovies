@@ -303,11 +303,13 @@ public class JSONParser {
                 movies.setMark(jsonObject.getInt("mark"));
                 movies.setImageURL(jsonObject.getString("poster_path"));
                 JSONArray jsonComments = jsonObject.getJSONArray("comments");
-                List<String> comments = new ArrayList<String>();
-                for (int i = 0; i < jsonComments.length(); i++) {
-                    comments.add(jsonComments.getString(i));
+                List<String> list = new ArrayList<String>();
+                for (int j = 0; j < jsonComments.length(); j++)
+                {
+                    JSONObject jobj = jsonComments.getJSONObject(j);
+                    list.add(jobj.getString("comment"));
                 }
-                movies.setComments(comments);
+                movies.setComments(list);
                 listMovies.add(movies);
             }
         } catch (JSONException e) {
