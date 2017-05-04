@@ -1,5 +1,5 @@
 package eu.epitech.mymovies.mymovies;
-
+ 
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
