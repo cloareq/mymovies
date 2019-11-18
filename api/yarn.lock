@@ -148,9 +148,9 @@ base64url@2.0.0, base64url@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/base64url/-/base64url-2.0.0.tgz#eac16e03ea1438eff9423d69baa36262ed1f70bb"
 
-bignumber.js@3.1.2:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-3.1.2.tgz#f3bdb99ad5268a15fc1f0bed2fb018e2693fe236"
+bignumber.js@4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-4.0.2.tgz#2d1dc37ee5968867ecea90b6da4d16e68608d21d"
 
 bluebird@^3.4.3, bluebird@^3.4.6:
   version "3.5.0"
@@ -192,10 +192,6 @@ braces@^1.8.2:
 buffer-equal-constant-time@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/buffer-equal-constant-time/-/buffer-equal-constant-time-1.0.1.tgz#f8e71132f7ffe6e01a5c9697a4c6f3e48d5cc819"
-
-buffer-shims@~1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/buffer-shims/-/buffer-shims-1.0.0.tgz#9978ce317388c649ad8793028c3477ef044a8b51"
 
 builtin-modules@^1.1.1:
   version "1.1.1"
@@ -969,6 +965,10 @@ inherits@2, inherits@^2.0.1, inherits@^2.0.3, inherits@~2.0.1:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
 
+inherits@~2.0.3:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.4.tgz#0fa2c64f932917c3433a0ded55363aae37416b7c"
+
 ini@^1.3.4:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.4.tgz#0537cb79daf59b59a1a517dff706c86ec039162e"
@@ -1391,12 +1391,13 @@ mute-stream@0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.5.tgz#8fbfabb0a98a253d3184331f9e8deb7372fac6c0"
 
-mysql@^2.13.0:
-  version "2.13.0"
-  resolved "https://registry.yarnpkg.com/mysql/-/mysql-2.13.0.tgz#998f1f8ca46e2e3dd7149ce982413653986aae47"
+mysql@^2.14.0:
+  version "2.14.0"
+  resolved "https://registry.yarnpkg.com/mysql/-/mysql-2.14.0.tgz#325cc1156e8246e572118774bbf406eaa9189ffd"
   dependencies:
-    bignumber.js "3.1.2"
-    readable-stream "1.1.14"
+    bignumber.js "4.0.2"
+    readable-stream "2.3.3"
+    safe-buffer "5.1.1"
     sqlstring "2.2.0"
 
 natural-compare@^1.4.0:
@@ -1605,7 +1606,19 @@ randomatic@^1.1.3:
     is-number "^2.0.2"
     kind-of "^3.0.2"
 
-readable-stream@1.1.14, readable-stream@^1.1.12:
+readable-stream@2.3.3, readable-stream@^2.0.0, readable-stream@^2.0.5, readable-stream@^2.2.2:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.3.3.tgz#368f2512d79f9d46fdfc71349ae7878bbc1eb95c"
+  dependencies:
+    core-util-is "~1.0.0"
+    inherits "~2.0.3"
+    isarray "~1.0.0"
+    process-nextick-args "~1.0.6"
+    safe-buffer "~5.1.1"
+    string_decoder "~1.0.3"
+    util-deprecate "~1.0.1"
+
+readable-stream@^1.1.12:
   version "1.1.14"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-1.1.14.tgz#7cf4c54ef648e3813084c636dd2079e166c081d9"
   dependencies:
@@ -1613,18 +1626,6 @@ readable-stream@1.1.14, readable-stream@^1.1.12:
     inherits "~2.0.1"
     isarray "0.0.1"
     string_decoder "~0.10.x"
-
-readable-stream@^2.0.0, readable-stream@^2.0.5, readable-stream@^2.2.2:
-  version "2.2.9"
-  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.2.9.tgz#cf78ec6f4a6d1eb43d26488cac97f042e74b7fc8"
-  dependencies:
-    buffer-shims "~1.0.0"
-    core-util-is "~1.0.0"
-    inherits "~2.0.1"
-    isarray "~1.0.0"
-    process-nextick-args "~1.0.6"
-    string_decoder "~1.0.0"
-    util-deprecate "~1.0.1"
 
 readline2@^1.0.1:
   version "1.0.1"
@@ -1710,9 +1711,13 @@ rx-lite@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/rx-lite/-/rx-lite-3.1.2.tgz#19ce502ca572665f3b647b10939f97fd1615f102"
 
-safe-buffer@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.0.1.tgz#d263ca54696cd8a306b5ca6551e92de57918fbe7"
+safe-buffer@5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
+
+safe-buffer@^5.0.1, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
 
 semver@~5.3.0:
   version "5.3.0"
@@ -1783,11 +1788,11 @@ string_decoder@~0.10.x:
   version "0.10.31"
   resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-0.10.31.tgz#62e203bc41766c6c28c9fc84301dab1c5310fa94"
 
-string_decoder@~1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-1.0.0.tgz#f06f41157b664d86069f84bdbdc9b0d8ab281667"
+string_decoder@~1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-1.0.3.tgz#0fc67d7c141825de94282dd536bec6b9bce860ab"
   dependencies:
-    buffer-shims "~1.0.0"
+    safe-buffer "~5.1.0"
 
 strip-ansi@^3.0.0:
   version "3.0.1"
