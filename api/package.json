@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "apidoc": "^0.17.5",
-    "eslint": "^3.19.0",
+    "eslint": "^4.18.2",
     "eslint-config-lludol": "^0.1.6"
   }
 }
