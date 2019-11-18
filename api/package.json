@@ -22,7 +22,7 @@
     "jsonwebtoken": "^7.3.0",
     "knex": "^0.12.9",
     "moviedb": "^0.2.8",
-    "mysql": "^2.13.0",
+    "mysql": "^2.14.0",
     "themoviedb-javascript-library": "^1.0.0",
     "winston-lludol": "^0.0.5"
   },
